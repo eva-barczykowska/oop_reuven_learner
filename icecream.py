@@ -1,9 +1,11 @@
 class Scoop:
     def __init__(self, flavour):
         self.flavour = flavour
+
+
 # if you want it with mixins:
 # class Scoop:
-#     def __init__(self, flavor, *mixins):
+#     def __init__(self, flavor, *mixins):  # *mixins is a tuple containing any number of mixins(walnuts, choco chips)
 #         self.flavor = flavor
 #         self.mixins = []
 
@@ -12,8 +14,8 @@ s1 = Scoop('vanilla')
 s2 = Scoop('chocolate')
 s3 = Scoop('cappuccino')
 
-for flavour in [s1, s2, s3]:
-    print(flavour)
+for flavor in [s1, s2, s3]:
+    print(flavor)
 
 # sb else's solution
 icecream = ["raspberry", "blueberry", "strawberry"]
@@ -22,6 +24,8 @@ for x in icecream:
     print(s.flavour)
 
 print("---------------------------")
+
+
 class Bowl:
     def __init__(self):
         self.scoops = []  # initialize our scoops attribute to an empty list
@@ -40,6 +44,8 @@ for one_scoop in b.scoops:
     print(one_scoop.flavour)
 
 print("---------------------------")
+
+
 #  rewritten solution
 
 
@@ -50,8 +56,8 @@ class Bowl:
     of Scoop will be added to an instance of Bowl using the "add_scoops" method.
 
     Be careful about using this class with small children or people with high cholesterol.
-
     """
+
     def __init__(self):
         """
         Initialize a new Bowl instance with an empty list of scoops.
@@ -89,8 +95,9 @@ class Bowl:
         # return [one_scoop.flavour for one_scoop in self.scoops]  # return a list of flavours from our scoops attribute
         output = []  # initialize an empty list
         for one_scoop in self.scoops:  # go through each scoop in our scoops attribute
-            output.append(one_scoop.flavour) # get the flavour of the scoop
+            output.append(one_scoop.flavour)  # get the flavour of the scoop
         return output  # return the list of flavours
+
 
 s1 = Scoop('coconut')
 s2 = Scoop('cacao-bliss')
