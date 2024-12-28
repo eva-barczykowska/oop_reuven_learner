@@ -21,7 +21,7 @@ class Person:
         self.last_name = last_name
         self.shoe_size = shoe_size
 
-# getters / getter methods -- retrieve fields / attributes
+    # getters / getter methods -- retrieve fields / attributes
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
 
@@ -76,26 +76,29 @@ class Person:
         self.shoe_size = new_shoe_size
 
 
-p = Person("Anita", "Passanha", 41)  # need to define an instance before setting attributes
+person = Person("Anita", "Passanha", 41)  # need to define an instance before setting attributes
 print(p.full_name())
-p.set_first_name("Anita2")
-p.set_last_name("Passanha2")
+person.set_first_name("Anita2")
+person.set_last_name("Passanha2")
 print(p.full_name())
 
 # Getters / setter methods in are rarely used in Python
 # No need because all attributes are accessible directly/they're all public
 # Protected/Private attributes? Nothing like that!
 
-# Rewriting how it looks in modern Python
-
+print('---------------------------------------------------------')
+print("Rewriting how it looks in modern Python")
 print('---------------------------------------------------------')
 
 
 class Person:
+    population = 0
+
     def __init__(self, first_name, last_name, shoe_size):
         self.first_name = first_name
         self.last_name = last_name
         self.shoe_size = shoe_size
+        Person.population += 1
 
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
@@ -127,4 +130,25 @@ print(citizen2.greet())
 
 person = FriendlyPerson("Baboon", "Hicky").greet()  # it works, but not recommended
 print(person)
-print(person.greet())
+# print(person.greet())
+
+#  ICPO look up path in Python
+print(Person.population)  # accessing the class attribute directly
+p2 = Person("Tanita", "Tikaram", 47)
+print(Person.population)
+
+print(p2.population) # we ask instance for the attribute, not the class
+# if instance doesn't have the attribute, it will go to the class attribute'
+
+
+class Employee(Person):
+    def __init__(self, first_name, last_name, shoe_size, id):
+        # Person.__init__(self, first_name, last_name, shoe_size) # comes from the superclass (Person)
+        # there is a nicer way to call the superclass constructor then how we did it on the previous line
+        super().__init__(first_name, last_name, shoe_size) # comes from the superclass (Person)
+        self.id = id
+
+ewa = Employee("Ewa", "Barczykowska", 41, 12345)
+print(ewa.id)
+
+# Python supports multiple inheritance but it's not recommended'
